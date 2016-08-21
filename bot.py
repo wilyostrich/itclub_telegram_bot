@@ -43,7 +43,6 @@ def mess_text(message):
 
 bot.polling(none_stop=True)
 
-
 """
 @bot.message_handler(commands=['courses'])
 def courses(message):
