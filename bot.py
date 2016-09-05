@@ -8,7 +8,7 @@ __author__ = 'vladislav_lantsov'
 bot = telebot.TeleBot(config.token)
 
 WEBHOOK_HOST = 'itclubtelegrambot.herokuapp.com'
-WEBHOOK_URL_PACH = '/bot'
+WEBHOOK_URL_PACH = "/%s/" % (config.token)
 WEBHOOK_PORT = os.environ.get('PORT', 5000)
 WEBHOOK_LISTEN = '0.0.0.0'
 
