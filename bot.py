@@ -1,15 +1,15 @@
 import telebot
-
 import os
 from flask import Flask,request
 
 __author__ = 'vladislav_lantsov'
+
 token = '251607176:AAFep6-Yg_pbg44tZFeKmQdc_XddhYANGQ0'
 bot = telebot.TeleBot(token)
 
 WEBHOOK_HOST = 'itclubtelegrambot.herokuapp.com'
 WEBHOOK_URL_PACH = '/bot'
-WEBHOOK_PORT = os.environ.get('PORT', 5000)
+WEBHOOK_PORT = 433
 WEBHOOK_LISTEN = '0.0.0.0'
 
 WEBHOOK_URL_BASE = "http://%s/%s" % (WEBHOOK_HOST, WEBHOOK_URL_PACH)
