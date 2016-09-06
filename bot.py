@@ -9,11 +9,33 @@ server = Flask(__name__)
 
 @bot.message_handler(commands=['start'])
 def start(message):
+    bot.reply_to(message, 'Hello, ' + message.from_user.first_name)
+
+@bot.message_handler(func=lambda message: True, content_types=['text'])
+def echo_message(message):
+    bot.reply_to(message, message.text)
+
+@server.route("/bot", methods=['POST'])
+def getMessage():
+    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
+    return "!", 200
+
+@server.route("/")
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url="https://itclub-telegram-bot.herokuapp.com/bot")
+    return "!", 200
+
+server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
+server = Flask(__name__)
+"""
+@bot.message_handler(commands=['start'])
+def start(message):
     command_key = telebot.types.ReplyKeyboardMarkup(True, True)
     command_key.row('/help')
-    bot.reply_to(message, 'Привет, ' + message.from_user.first_name + '!' + ' Жми /help чтобы узнать о возможостях бота.', reply_markup=command_key)
+    bot.send_message(message.from_user.id, 'Привет, ' + message.from_user.first_name + '!' + ' Жми /help чтобы узнать о возможостях бота.', reply_markup=command_key)
 
-"""@bot.message_handler(content_types=['text'])
+@bot.message_handler(content_types=['text'])
 def mess_text(message):
     if message.text == "/help":
         command_key = telebot.types.ReplyKeyboardMarkup(True, True)
@@ -45,24 +67,6 @@ def mess_text(message):
     else:
         bot.send_message(message.from_user.id, 'Вы ввели неверную команду. Для справки введите /help.')
 """
-@bot.message_handler(func=lambda message: True, content_types=['text'])
-def echo_message(message):
-    bot.reply_to(message, message.text)
-
-@server.route("/bot", methods=['POST'])
-def getMessage():
-    bot.process_new_updates([telebot.types.Update.de_json(request.stream.read().decode("utf-8"))])
-    return "!", 200
-
-@server.route("/")
-def webhook():
-    bot.remove_webhook()
-    bot.set_webhook(url="https://itclub-telegram-bot.herokuapp.com/bot")
-    return "!", 200
-
-server.run(host="0.0.0.0", port=os.environ.get('PORT', 5000))
-server = Flask(__name__)
-
 
 
 
