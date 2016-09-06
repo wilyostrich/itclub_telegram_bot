@@ -9,7 +9,9 @@ server = Flask(__name__)
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.reply_to(message, 'Hello, ' + message.from_user.first_name)
+    command_key = telebot.types.ReplyKeyboardMarkup(True, True)
+    command_key.row('/help')
+    bot.send_message(message.from_user.id, 'Привет, ' + message.from_user.first_name + '!' + ' Жми /help чтобы узнать о возможостях бота.', reply_markup=command_key)
 
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
