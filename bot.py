@@ -13,7 +13,7 @@ def start(message):
     command_key.row('/help')
     bot.reply_to(message, 'Привет, ' + message.from_user.first_name + '!' + ' Жми /help чтобы узнать о возможостях бота.', reply_markup=command_key)
 
-@bot.message_handler(content_types=['text'])
+"""@bot.message_handler(content_types=['text'])
 def mess_text(message):
     if message.text == "/help":
         command_key = telebot.types.ReplyKeyboardMarkup(True, True)
@@ -44,7 +44,7 @@ def mess_text(message):
                               'https://new.vk.com/olymp_psuti - Студенческая Олимпиада в сфере Инфокоммуникационных технологий')
     else:
         bot.send_message(message.from_user.id, 'Вы ввели неверную команду. Для справки введите /help.')
-
+"""
 @bot.message_handler(func=lambda message: True, content_types=['text'])
 def echo_message(message):
     bot.reply_to(message, message.text)
