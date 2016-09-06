@@ -1,4 +1,3 @@
-CherryPy
 PyTelegramBotAPI
 requests
 telebot
