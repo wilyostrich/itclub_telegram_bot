@@ -11,7 +11,7 @@ server = Flask(__name__)
 def start(message):
     command_key = telebot.types.ReplyKeyboardMarkup(True, True)
     command_key.row('/help')
-    bot.reply_to(message.from_user.id, 'Привет, ' + message.from_user.first_name + '!' + ' Жми /help чтобы узнать о возможостях бота.', reply_markup=command_key)
+    bot.reply_to(message, 'Привет, ' + message.from_user.first_name + '!' + ' Жми /help чтобы узнать о возможостях бота.', reply_markup=command_key)
 
 @bot.message_handler(content_types=['text'])
 def mess_text(message):
