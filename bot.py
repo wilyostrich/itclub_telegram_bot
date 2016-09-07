@@ -42,13 +42,11 @@ def mess_text(message):
                               'https://new.vk.com/studday_psuti - StudDay. День студента ПГУТИ позволит учащимся школ стать настоящим студентом на целый день!\n'
                               'https://new.vk.com/brain_psuti - Легендарный "Что?Где?Когда?"\n'
                               'https://new.vk.com/olymp_psuti - Студенческая Олимпиада в сфере Инфокоммуникационных технологий')
+    elif message.text == "/itclub":
+        bot.send_photo(message.from_user.id, photo="https://pp.vk.me/c622728/v622728138/e6fe/oyZ3Ap2FO9E.jpg")
+
     else:
         bot.send_message(message.from_user.id, 'Вы ввели неверную команду. Для справки введите /help.')
-
-@bot.message_handler(message = '/itclub')
-def itclub(message):
-     bot.send_photo(message.from_user.id, photo= "https://pp.vk.me/c622728/v622728138/e6fe/oyZ3Ap2FO9E.jpg")
-
 
 @server.route("/bot", methods=['POST'])
 def getMessage():
