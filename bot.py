@@ -1,6 +1,7 @@
 import telebot
 import config
 import os
+from telebot import types
 from flask import Flask, request
 
 bot = telebot.TeleBot(config.token)
@@ -17,13 +18,15 @@ def start(message):
 def mess_text(message):
     if message.text == "/help":
         command_key = telebot.types.ReplyKeyboardMarkup(True, True)
+        command_key.row("/itclub")
         command_key.row("/structure")
         command_key.row("/courses")
         command_key.row("/events")
         command_key.row("/help")
-        bot.reply_to(message, '/structure - список студенчских организаций\n'
+        bot.reply_to(message, '/itclub - ИТ-клуб ПГУТИ'
                               '/courses - бесплатные курсы для студентов\n'
-                              '/events - мероприятия ИТ-клуба ПГУТИ', reply_markup=command_key)
+                              '/events - мероприятия ИТ-клуба ПГУТИ\n'
+                              '/structure - список студенчских организаций', reply_markup=command_key)
     elif message.text == "/structure":
         bot.reply_to(message, 'https://new.vk.com/itclub_psuti - Студенческий ИТ-клуб ПГУТИ\n'
                               'https://new.vk.com/profkom_psuti - Профком студентов ПГУТИ\n'
@@ -53,6 +56,9 @@ def mess_text(message):
                               '   Члены клуба успешно представляют университет на разных уровнях. Они являются участниками, призерами и победителями Межвузовских, Областных и Международных Олимпиад и Конференций.\n'
                               '   Представители студенческого ИТ­ Клуба «IN-­IT with ПГУТИ» с удовольствием делятся своими навыками и всегда готовы к обмену опытом. Благодаря этому, при клубе существуют мастерские, организованные студентами по актуальным ИТ направлениям. ИТ–Клуб дает студентам возможность проявить себя в самых различных направлениях,что немаловажно для будущей профессиональной карьеры. Умение работать в команде, возможность проявить себя, как начинающего ученого, творческий подход к сложным задачам, опыт организации мероприятий в ВУЗе и за его пределами, возможность развить педагогический талант – это неполный список качеств, которые студент может открыть в себе, работая совместно с ИТ–клубом.')
         bot.send_photo(message.from_user.id, photo="https://pp.vk.me/c622728/v622728138/e6fe/oyZ3Ap2FO9E.jpg")
+        keyboard = types.InlineKeyboardMarkup()
+        url_button = types.InlineKeyboardButton(text="ПРИСОЕДИНЯЙСЯ", url="https://vk.com/itclub_psuti")
+        keyboard.add(url_button)
     else:
         bot.send_message(message.from_user.id, 'Вы ввели неверную команду. Для справки введите /help.')
 
