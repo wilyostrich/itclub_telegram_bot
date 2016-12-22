@@ -23,7 +23,8 @@ def mess_text(message):
         command_key.row("/courses")
         command_key.row("/events")
         command_key.row("/help")
-        bot.reply_to(message, '/itclub - ИТ-клуб ПГУТИ\n'
+        bot.reply_to(message, 'Доступные комманды:\n'
+                              '/itclub - ИТ-клуб ПГУТИ\n'
                               '/courses - бесплатные курсы для студентов\n'
                               '/events - мероприятия ИТ-клуба ПГУТИ\n'
                               '/structure - список студенчских организаций', reply_markup=command_key)
