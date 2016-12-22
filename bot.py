@@ -57,8 +57,9 @@ def mess_text(message):
                               '   Представители студенческого ИТ­ Клуба «IN-­IT with ПГУТИ» с удовольствием делятся своими навыками и всегда готовы к обмену опытом. Благодаря этому, при клубе существуют мастерские, организованные студентами по актуальным ИТ направлениям. ИТ–Клуб дает студентам возможность проявить себя в самых различных направлениях,что немаловажно для будущей профессиональной карьеры. Умение работать в команде, возможность проявить себя, как начинающего ученого, творческий подход к сложным задачам, опыт организации мероприятий в ВУЗе и за его пределами, возможность развить педагогический талант – это неполный список качеств, которые студент может открыть в себе, работая совместно с ИТ–клубом.')
         bot.send_photo(message.from_user.id, photo="https://pp.vk.me/c622728/v622728138/e6fe/oyZ3Ap2FO9E.jpg")
         keyboard = types.InlineKeyboardMarkup()
-        url_button = types.InlineKeyboardButton(text="ПРИСОЕДИНЯЙСЯ", url="https://vk.com/itclub_psuti")
+        url_button = types.InlineKeyboardButton(text="Присоединиться", url="https://vk.com/itclub_psuti")
         keyboard.add(url_button)
+        bot.send_message(message.chat.id, "Будь с нами!", reply_markup=keyboard)
     else:
         bot.send_message(message.from_user.id, 'Вы ввели неверную команду. Для справки введите /help.')
 
